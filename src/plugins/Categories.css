@@ -52,6 +52,8 @@
   top: 100%;
   width: 100%;
   z-index: 1;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .dropdown-item {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Product from "./Product";
-import Cart from "./Cart";
+import Product from "../Product";
+import Cart from "../logged_in_user/Cart";
 import Payment from "./Payment";
 import "./Shop.css";
 

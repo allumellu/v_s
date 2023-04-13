@@ -1,16 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
-import Search from "./components/Search";
-import AddProduct from "./components/Addproduct";
-import Cart from "./components/Cart";
-import Login from "./components/Login";
-import Payment from "./components/Payment";
+import Search from "./plugins/Search";
+import AddProduct from "./components/logged_in_business_user/Addproduct";
+import Cart from "./components/logged_in_user/Cart";
+import Login from "./components/common/Login";
+import Payment from "./components/logged_in_business_user/Payment";
 import Product from "./components/Product";
 import ProductListing from "./components/ProductListing";
-import Registration from "./components/Registration";
-import Shop from "./components/Shop";
+import Registration from "./components/logged_in_business_user/Registration";
+import Shop from "./components/logged_in_business_user/Shop";
 import Categories from "./plugins/Categories";
+import ProductList from "./components/Dummydata";
 
 const LayoutWrapper = styled.div`
   display: grid;
@@ -103,7 +104,8 @@ const App = ({ children }) => {
         <Routes>
           <Route path='/' element={<ProductListing />} />
 
-          <Route path='/product' element={<Product />} />
+          <Route path='/product' element={<Product product={ProductList} />} />
+
           <Route path='/shop' element={<Shop />} />
 
           <Route path='/login' element={<Login />} />
