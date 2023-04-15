@@ -17,9 +17,9 @@ const AddProduct = () => {
   };
 
   return (
-    <div className='add-product-container'>
+    <div className='shop-container'>
       <h2>Add Product</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor='productName'>Product Name:</label>
         <input
           type='text'
@@ -84,6 +84,7 @@ const AddProduct = () => {
           <option value='new'>New</option>
           <option value='refurbished'>Refurbished</option>
         </select>
+        <br />
         <button type='submit'>Submit</button>
       </form>
     </div>

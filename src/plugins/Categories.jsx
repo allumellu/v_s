@@ -29,6 +29,7 @@ const categories = [
   "Tools & Home Improvement",
   "Toys & Games",
   "Video Games",
+  "All",
 ];
 
 const Dropdown = () => {
@@ -43,7 +44,7 @@ const Dropdown = () => {
   return (
     <div className='dropdown-container'>
       <button className='dropdown-toggle' onClick={() => setIsOpen(!isOpen)}>
-        Shop by category {selectedCategory}{" "}
+        {selectedCategory}{" "}
         <span className={`arrow ${isOpen ? "up" : "down"}`} />
       </button>
       {isOpen && (
