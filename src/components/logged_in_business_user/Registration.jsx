@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -51,17 +52,41 @@ const Button = styled.button`
 `;
 
 const Registration = () => {
+  const [location, setLocation] = useState("");
+
+  const handleDetectLocation = () => {
+    axios
+      .get(
+        "`http://maps.googleapis.com/maps/api/geocode/json?address=Dallas&sensor=false`"
+      )
+      .then((response) => {
+        const { city, region, country_name } = response.data;
+        setLocation(`${city}, ${region}, ${country_name}`);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // handle form submission with location state
+  };
+
   return (
     <Container>
-      <RegistrationForm>
+      <RegistrationForm onSubmit={handleSubmit}>
         <h2 style={{ marginBottom: "16px" }}>Register Your Shop</h2>
         <Input type='text' placeholder='Shop Name' />
         <Input type='text' placeholder='Address' />
         <Input type='text' placeholder='Registration Certificate Number' />
-        <Input type='text' placeholder='Geometric Location' />
+        <Button type='button' onClick={handleDetectLocation}>
+          Detect Location
+        </Button>
         <Input type='number' placeholder='Number of Products' />
         <Input type='file' accept='image/*' />
         <Button type='submit'>Register</Button>
+        {location && <p>Your location: {location}</p>}
       </RegistrationForm>
     </Container>
   );

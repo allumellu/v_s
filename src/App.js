@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import styled from "styled-components";
 import Search from "./plugins/Search";
 import AddProduct from "./components/logged_in_business_user/Addproduct";
@@ -11,7 +17,8 @@ import ProductListing from "./components/ProductListing";
 import Registration from "./components/logged_in_business_user/Registration";
 import Shop from "./components/logged_in_business_user/Shop";
 import Categories from "./plugins/Categories";
-import ProductList from "./components/Dummydata";
+import ProductListDummy from "./components/Dummydata";
+import "./components/Dummydata.css";
 
 const LayoutWrapper = styled.div`
   display: grid;
@@ -83,12 +90,18 @@ const ChatButton = styled.button`
 `;
 
 const App = ({ children }) => {
+  const navigate = useNavigate();
   return (
     <LayoutWrapper>
       <HeaderWrapper>
+        {/* {ProductListDummy.map((item) => (
+          <>
+            <>{item.id}</>
+          </>
+        ))} */}
         <Nav>
           <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/product"}>Products</NavLink>
+          <NavLink to={"/products"}>Products</NavLink>
           <NavLink to={"/shop"}>Shop</NavLink>
           <NavLink to={"/login"}>Login</NavLink>
           <NavLink to={"/addproduct"}>Add Products</NavLink>
@@ -99,12 +112,23 @@ const App = ({ children }) => {
         <Categories />
         <Search />
         <Logo>Virtual Shoppy</Logo>
+        <div onClick={() => navigate("/login")}>
+          <img
+            src='https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-png-transparent-image-pngpix-11.png'
+            alt='Cart'
+            style={{ width: "70px" }}
+          />
+          <span>00</span>
+        </div>
       </HeaderWrapper>
       <MainWrapper>
         <Routes>
           <Route path='/' element={<ProductListing />} />
 
-          <Route path='/product' element={<Product product={ProductList} />} />
+          <Route
+            path='/products'
+            element={<Product product={ProductListDummy} />}
+          />
 
           <Route path='/shop' element={<Shop />} />
 
