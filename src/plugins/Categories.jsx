@@ -43,7 +43,7 @@ const Dropdown = () => {
   return (
     <div className='dropdown-container'>
       <button className='dropdown-toggle' onClick={() => setIsOpen(!isOpen)}>
-        Shop by categry {selectedCategory}{" "}
+        Shop by category {selectedCategory}{" "}
         <span className={`arrow ${isOpen ? "up" : "down"}`} />
       </button>
       {isOpen && (

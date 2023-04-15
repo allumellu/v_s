@@ -94,25 +94,38 @@ const App = ({ children }) => {
   return (
     <LayoutWrapper>
       <HeaderWrapper>
-        {/* {ProductListDummy.map((item) => (
-          <>
-            <>{item.id}</>
-          </>
-        ))} */}
-        <Nav>
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/products"}>Products</NavLink>
-          <NavLink to={"/shop"}>Shop</NavLink>
-          <NavLink to={"/login"}>Login</NavLink>
-          <NavLink to={"/addproduct"}>Add Products</NavLink>
-          {/* <NavLink to='/cart'>Cart</NavLink> */}
-          <NavLink to={"/payment"}>Payment</NavLink>
-          <NavLink to={"/registration"}>Registration</NavLink>
+        <Nav className='Nav'>
+          <NavLink to={"/"} className='NavLink'>
+            Home
+          </NavLink>
+          <NavLink to={"/products"} className='NavLink'>
+            Products
+          </NavLink>
+          <NavLink to={"/shop"} className='NavLink'>
+            Shop
+          </NavLink>
+          <NavLink to={"/login"} className='NavLink'>
+            Login
+          </NavLink>
+          <NavLink to={"/addproduct"} className='NavLink'>
+            Add Products
+          </NavLink>
+          <NavLink to={"/payment"} className='NavLink'>
+            Payment
+          </NavLink>
+          <NavLink to={"/registration"} className='NavLink'>
+            Registration
+          </NavLink>
         </Nav>
-        <Categories />
-        <Search />
-        <Logo>Virtual Shoppy</Logo>
-        <div onClick={() => navigate("/login")}>
+        <div className='SearchCategories'>
+          <span>Search Categories </span>
+          <Categories />
+        </div>
+        <div className='Search'>
+          <Search />
+        </div>
+        <Logo className='Logo'>Virtual Shoppy</Logo>
+        <div className='Cart' onClick={() => navigate("/login")}>
           <img
             src='https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-png-transparent-image-pngpix-11.png'
             alt='Cart'

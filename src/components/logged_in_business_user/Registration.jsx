@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { registerShop } from "../../Redux/Actions/shopActions";
 
 const Container = styled.div`
   display: flex;
@@ -52,41 +53,65 @@ const Button = styled.button`
 `;
 
 const Registration = () => {
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
   const [location, setLocation] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleDetectLocation = () => {
-    axios
-      .get(
-        "`http://maps.googleapis.com/maps/api/geocode/json?address=Dallas&sensor=false`"
-      )
-      .then((response) => {
-        const { city, region, country_name } = response.data;
-        setLocation(`${city}, ${region}, ${country_name}`);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // API call to get location
+    setLocation("Dallas, Texas, USA");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle form submission with location state
+    // dispatch the action to register shop with the form data and location
+    dispatch(
+      registerShop({
+        name,
+        address,
+        registrationNumber,
+        location,
+        phone,
+      })
+    );
   };
 
   return (
     <Container>
       <RegistrationForm onSubmit={handleSubmit}>
         <h2 style={{ marginBottom: "16px" }}>Register Your Shop</h2>
-        <Input type='text' placeholder='Shop Name' />
-        <Input type='text' placeholder='Address' />
-        <Input type='text' placeholder='Registration Certificate Number' />
+        <Input
+          type='text'
+          placeholder='Shop Name'
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <Input
+          type='text'
+          placeholder='Address'
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
+        />
+        <Input
+          type='text'
+          placeholder='Registration Certificate Number'
+          value={registrationNumber}
+          onChange={(event) => setRegistrationNumber(event.target.value)}
+        />
         <Button type='button' onClick={handleDetectLocation}>
           Detect Location
         </Button>
-        <Input type='number' placeholder='Number of Products' />
-        <Input type='file' accept='image/*' />
+        <Input
+          type='text'
+          placeholder='Phone Number'
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+        />
         <Button type='submit'>Register</Button>
-        {location && <p>Your location: {location}</p>}
       </RegistrationForm>
     </Container>
   );
