@@ -8,7 +8,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f7cac9;
+  background-color: white;
 `;
 
 const RegistrationForm = styled.form`
